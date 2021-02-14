@@ -1,0 +1,33 @@
+
+div.isoBox{
+    position: relative;
+    margin:auto;
+    width: 350px;
+    height: 450px;
+    background-color: yellow;
+    transform:rotateX(60deg) rotateZ(-45deg) scale(1.2);
+  }
+  
+  .isoBox:before{
+    content: '';
+      height: 118%;
+      width: 47%;
+      background-color: blueviolet;
+      left: -34%;
+      top: 0%;
+      position: absolute;
+      transform: rotateX(30deg) rotateZ(0deg) rotateY(116.5deg);
+      border-bottom-right-radius: 17px;
+  }
+  
+  .isoBox::after{
+    content: '';
+      height: 91%;
+      width: 47%;
+      background-color: blueviolet;
+      left: 16%;
+      top: 63%;
+      position: absolute;
+      transform: rotateX(-2deg) rotateZ(84deg) rotateY(95deg) rotate3d(0, -1, 1, 46deg);
+      border-bottom-right-radius: 11px;
+  }
