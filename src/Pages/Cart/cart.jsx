@@ -11,7 +11,7 @@ const cartProducts = [
 const cart = () => {
     return (
         <div className="page">
-            <h2 style={{ position: 'absolute' }}><strong>Cart</strong></h2>
+            <h2><strong>Cart</strong></h2>
             <Container fluid="lg">
                 {cartProducts.map((product) =>
                     <CartCard product={product} />

@@ -29,3 +29,21 @@ body {
     text-decoration: none;
     color:white;
   }
+
+  p{
+    margin:0;
+  }
+
+a.detail-link{
+  color:rgb(68, 68, 68);
+  text-decoration: none;
+}
+
+a.detail-link:hover{
+  color: black;
+  text-decoration: none;
+}
+
+img.productimg:hover{
+  transform: scale(1.13);
+}

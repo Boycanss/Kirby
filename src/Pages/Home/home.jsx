@@ -1,40 +1,86 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Row, Spinner } from 'react-bootstrap'
+import { useParams } from 'react-router-dom';
 import Card from '../../Components/Cards/productCards'
-import { Container, Row, Col } from 'react-bootstrap'
 import Commerce from '@chec/commerce.js';
-const commerce = new Commerce(`${process.env.REACT_APP_CHEC_PUBLIC_KEY}`);
+const commerce = new Commerce('pk_test_228485810589e825901899773fc3fb3e4eb4ed6a60fcd');
 
-const products = [
-    { name: 'Character 1', price: '100000', image: 'char1.gif', description: 'Officia qui do amet magna dolor excepteur aliquip enim.' },
-    { name: 'Character 2', price: '100000', image: 'char2.gif', description: 'Pariatur cillum culpa nisi enim ex.' },
-    { name: 'Character 3', price: '100000', image: 'char3.gif', description: 'Commodo commodo aliquip nisi magna commodo exercitation do do in..' },
-    { name: 'Character 4', price: '100000', image: 'char4.gif', description: 'Non incididunt ipsum do ullamco occaecat voluptate eiusmod occaecat ea sit consectetur.' },
-    { name: 'Character 5', price: '100000', image: 'char5.gif', description: 'Consequat ipsum ad velit ullamco cupidatat qui duis cupidatat pariatur dolore occaecat elit sint duis.' },
-    { name: 'Character 6', price: '100000', image: 'char6.gif', description: 'Officia qui do amet magna dolor excepteur aliquip enim.' },
-    { name: 'Character 7', price: '100000', image: 'char7.gif', description: 'Eu pariatur tempor Lorem ipsum anim proident aliqua nisi consectetur..' },
-    { name: 'Character 8', price: '100000', image: 'char8.gif', description: 'Officia commodo magna laboris officia sint aliqua elit commodo pariatur.' },
-    { name: 'Character 9', price: '100000', image: 'char9.gif', description: 'Officia qui do amet magna dolor excepteur aliquip enim.' },
-    { name: 'Character 10', price: '100000', image: 'char10.gif', description: 'Ullamco officia ex Lorem mollit magna mollit aliquip anim.' },
-    { name: 'Character 11', price: '100000', image: 'char11.gif', description: 'Officia culpa consectetur occaecat quis irure ex laborum sit consequat aliquip veniam.' },
-]
 
-const home = () => {
 
-    commerce.products.list().then((product) => console.log(product));
+const Home = () => {
+
+    const { id } = useParams();
+    const [product, setProduct] = useState([]);
+    const [category, setCategory] = useState([]);
+    const [isLoading, setIsLoading] = useState(false)
+
+    useEffect(() => {
+        setIsLoading(true)
+        if (!id || id === undefined) {
+            commerce.products.list().then((prod) => {
+                setProduct(prod.data);
+                categorize();
+                setIsLoading(false);
+            });
+        }
+        else {
+            commerce.products.list().then((prod) => {
+                const result = [];
+                prod.data.forEach((pr) => {
+
+                    if (pr.categories[0].name === id) {
+                        result.push(pr);
+                    }
+
+                })
+                setProduct(result)
+                setIsLoading(false);
+            });
+        }
+
+    }, []);
+
+    const categorize = () => {
+        commerce.categories.list()
+            .then((ctg) => {
+                setCategory(ctg.data)
+            })
+    }
+    console.log(product[3]);
 
     return (
         <div className="page">
-            <h2 style={{ position: 'absolute' }}><strong>Character</strong></h2>
-            <Container fluid="lg">
-                <Row>
-                    {products.map((product, idx) =>
-                        <Card product={product} key={idx} />
-                    )}
-                </Row>
+            {/* <h2 ><strong>{!id || id === undefined ? "All items" : id}</strong></h2> */}
+            {isLoading === true ?
+                <div style={{ width: '100%', height: '100%', position: 'absolute', zIndex: 2, backgroundColor: 'white' }}>
+                    <Spinner variant="primary" animation="border" style={{ position: 'relative', width: '115px', height: '115px', top: '30%', left: '45%', zIndex: 3 }} />
+                </div> :
+                category.length > 0 ?
+                    category.map((ctg) => {
+                        return <div key={ctg.id}>
+                            <h2 style={{ paddingBottom: '5px', borderBottom: '1px lightBlue solid' }}><strong>{ctg.name}</strong></h2><br />
+                            <Row style={{ marginBottom: '35px' }}>
+                                {product.map((prod) => {
+                                    return prod.categories[0].name === ctg.name ?
+                                        <Card product={prod} />
+                                        : null
+                                })}
+                            </Row>
+                        </div>
+                    })
+                    :
+                    <div>
+                        <h2 style={{ paddingBottom: '5px', borderBottom: '1px lightBlue solid' }}><strong>{id}</strong></h2><br />
+                        <Row style={{ marginBottom: '35px' }}>
+                            {product.map((prod) => {
+                                return <Card product={prod} />
+                            })}
+                        </Row>
+                    </div>
 
-            </Container>
+            }
         </div>
     )
 }
 
-export default home
+export default Home

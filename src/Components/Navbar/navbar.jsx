@@ -14,19 +14,17 @@ const navbar = () => {
             }}
         >
             <Navbar.Brand>
-                <NavLink to="/"  className="navlink-link">
+                <a href="/" className="navlink-link">
                     KIRBY
-                </NavLink>
+                </a>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">
-                    {/* <Nav.Link href="#features">Features</Nav.Link>
-                    <Nav.Link href="#pricing">Pricing</Nav.Link> */}
                     <NavDropdown title="Category" id="collasible-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Character</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Nature</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Abstract</NavDropdown.Item>
+                        <NavDropdown.Item href="/category/Clothing">Clothing</NavDropdown.Item>
+                        <NavDropdown.Item href="/category/Sprites">Sprites</NavDropdown.Item>
+                        <NavDropdown.Item href="/category/Art">Art</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action/3.4">Show All</NavDropdown.Item>
                     </NavDropdown>

@@ -7,6 +7,7 @@ import Navbar from './Components/Navbar/navbar'
 
 import Cart from './Pages/Cart/cart'
 import Home from './Pages/Home/home'
+import Details from './Pages/Home/details';
 
 export default class routes extends Component {
 
@@ -18,8 +19,14 @@ export default class routes extends Component {
           <Route exact path="/">
             <Home />
           </Route>
+          <Route exact path="/category/:id">
+            <Home />
+          </Route>
           <Route exact path="/cart">
             <Cart />
+          </Route>
+          <Route exact path="/details/:id">
+            <Details />
           </Route>
         </Switch>
       </>
