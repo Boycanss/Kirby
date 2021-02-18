@@ -20,7 +20,6 @@ const Home = () => {
             commerce.products.list().then((prod) => {
                 setProduct(prod.data);
                 categorize();
-                setIsLoading(false);
             });
         }
         else {
@@ -43,10 +42,10 @@ const Home = () => {
     const categorize = () => {
         commerce.categories.list()
             .then((ctg) => {
-                setCategory(ctg.data)
+                setCategory(ctg.data);
+                setIsLoading(false);
             })
     }
-    console.log(product[3]);
 
     return (
         <div className="page">
@@ -62,7 +61,7 @@ const Home = () => {
                             <Row style={{ marginBottom: '35px' }}>
                                 {product.map((prod) => {
                                     return prod.categories[0].name === ctg.name ?
-                                        <Card product={prod} />
+                                        <Card key={prod.id} product={prod} />
                                         : null
                                 })}
                             </Row>
