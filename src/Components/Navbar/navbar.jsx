@@ -3,7 +3,7 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import Cart from './cartNav';
 
-const navbar = () => {
+const navbar = ({cartTot}) => {
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark"
             style={{
@@ -32,7 +32,7 @@ const navbar = () => {
                 <Nav>
                     <Nav.Link>
                         <NavLink to="/cart" className="navlink-link">
-                            <Cart />
+                            <Cart cartTotal={cartTot}/>
                         </NavLink>
                     </Nav.Link>
 

@@ -29,7 +29,7 @@ const ImageDetail = ({ images }) => {
                             return <img key={idx} className="tinyImage" src={img.url} alt={img.filename} onClick={() => selectBigImage(idx)}
                                 style={{ height: '165px', cursor: 'pointer', margin: '5px 7px' }}
                             />
-                        }
+                        }return null;
                     })}
                 </div>
             </div>

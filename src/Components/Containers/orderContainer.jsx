@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Button } from 'react-bootstrap'
+import AddCart from '../../Components/Buttons/addToCart';
 
-const OrderContainer = ({ max }) => {
+const OrderContainer = ({ max, productID }) => {
     const [order, setOrder] = useState([]);
     const [size, setSize] = useState('');
 
@@ -65,9 +66,7 @@ const OrderContainer = ({ max }) => {
             <div>
                 {
                     order.qty > 0 &&
-                    <Button variant="light" style={{ border: '1px lightblue solid', width: '90%', height: '75px', display: 'block', margin: 'auto' }}>
-                        <strong>Add to Cart</strong>
-                    </Button>
+                    <AddCart big={true} productID={productID} />
                 }
             </div>
         </div>
