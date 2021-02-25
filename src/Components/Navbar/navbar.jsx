@@ -14,9 +14,9 @@ const navbar = ({cartTot}) => {
             }}
         >
             <Navbar.Brand>
-                <a href="/" className="navlink-link">
+                <NavLink to="/" className="navlink-link">
                     KIRBY
-                </a>
+                </NavLink>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">

@@ -30,7 +30,7 @@ const Details = () => {
                 setRelatedProducts(prod.related_products)
                 setIsLoading(false);
             })
-    }, []);
+    }, [id]);
 
     return (
         <div className="page">

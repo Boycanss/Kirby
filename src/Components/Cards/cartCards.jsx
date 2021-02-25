@@ -25,11 +25,11 @@ const CartCards = ({ product, increaseQty, reduceQty }) => {
                     <div style={{ textAlign: 'center' }}>
                         <p><strong>Subtotal</strong></p>
 
-                        <Button variant="secondary" onClick={increaseQty}>
+                        <Button className="updateCart" variant="secondary" onClick={increaseQty}>
                             <strong>+</strong>
                         </Button>
                         <p style={{ margin: 0 }}>{product.quantity}</p>
-                        <Button variant="secondary" onClick={reduceQty}>
+                        <Button className="updateCart" variant="secondary" onClick={reduceQty}>
                             <strong>-</strong>
                         </Button >
                         <br /><br />

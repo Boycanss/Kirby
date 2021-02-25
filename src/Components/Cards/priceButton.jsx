@@ -1,7 +1,6 @@
 import React from 'react'
-import AddCart from '../Buttons/addToCart';
 
-const PriceButton = ({ price, id }) => {
+const PriceButton = ({ price, stock }) => {
 
     return (
         <div>
@@ -11,7 +10,7 @@ const PriceButton = ({ price, id }) => {
                 justifyContent: 'space-between'
             }}>
                 <span style={{ margin: '5px 20px 0 10px' }}>{price}</span>
-                <AddCart big={false} productID={id} />
+                <span style={{ margin: '5px 20px 0 10px' }}>stock: {stock}</span>
             </div>
         </div>
     )

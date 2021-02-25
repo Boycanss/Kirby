@@ -18,6 +18,8 @@ const Cart = () => {
         setData();
     }, []);
 
+    console.log(cart);
+    
     const setData = () => {
         commerce.cart.retrieve()
             .then((cart) => {
@@ -67,8 +69,8 @@ const Cart = () => {
                         productLine.map((product) =>
                             <div key={product.id} style={{ display: 'flex', flexDirection: 'row' }}>
                                 <CartCard product={product} increaseQty={() => increaseQty(product.id, product.quantity)} reduceQty={() => reduceQty(product.id, product.quantity)} />
-                                <Button onClick={() => removeItem(product.id)} variant="light" style={{ height: '45px', margin: 'auto' }}>
-                                    <Trash style={{ fontSize: '25px' }} />
+                                <Button className="updateCart" onClick={() => removeItem(product.id)} variant="light" style={{ height: '45px', margin: 'auto', zIndex: 2 }}>
+                                    <Trash style={{ fontSize: '25px', zIndex: 1 }} />
                                 </Button>
                             </div>
                         ) :

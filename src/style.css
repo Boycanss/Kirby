@@ -47,3 +47,36 @@ a.detail-link:hover{
 img.productimg:hover{
   transform: scale(1.13);
 }
+
+div.notifCartUpdated{
+  position: absolute;
+  top: -25px;
+  right: 60px;
+  background-color: #007bff;
+  padding: 4px 7px;
+  border-radius: 13px;
+  color: white;
+  font-weight: bold;
+  transition:all .3s;
+  animation-name: notif;
+  animation-iteration-count: 1;
+  animation-duration: .3s;
+}
+div.notifCartUpdated::before{
+  content: '';
+  width: 0;
+  height: 0;
+  top: -18px;
+  position: absolute;
+  right: 60px;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 30px solid #007bff;
+}
+
+@keyframes notif {
+  0%    {top: -45px;}
+  25%   {top: -25px;}
+  75%   {top: -15px;}
+  100%  {top: -25px}
+}

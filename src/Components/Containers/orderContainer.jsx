@@ -3,31 +3,15 @@ import { Button } from 'react-bootstrap'
 import AddCart from '../../Components/Buttons/addToCart';
 
 const OrderContainer = ({ max, productID }) => {
-    const [order, setOrder] = useState([]);
+    const [qty, setQty] = useState(0);
     const [size, setSize] = useState('');
 
     const pickSize = (id) => {
         setSize(id);
-        setOrder(state => {
-            let name;
-            sizes.forEach((sz) => {
-                if (sz.id === id) {
-                    name = sz.name;
-                }
-            })
-            return {
-                size: name
-            }
-        })
     }
 
-    const setQty = (e) => {
-        setOrder(state => {
-            return {
-                ...state,
-                qty: e.target.value
-            }
-        })
+    const pickQty = (e) => {
+        setQty(e.target.value)
     }
 
     const sizes = [{ id: '1', name: "S" },
@@ -43,11 +27,11 @@ const OrderContainer = ({ max, productID }) => {
                     <p>Size:</p>
                     <div style={{ display: 'flex', flexDirection: 'row' }}>
                         {
-                            sizes.map((sz) =>
-
-                                <Button className={size === sz.id ? ' active' : ''} onClick={() => pickSize(sz.id)} key={sz.id} id={sz.name} variant="light" style={{ margin: '0 10px', borderRadius: '50%' }}>
+                            sizes.map((sz) => {
+                                return <Button className={size === sz.name ? ' active' : ''} onClick={() => pickSize(sz.name)} key={sz.id} id={sz.name} variant="light" style={{ margin: '0 10px', borderRadius: '50%' }}>
                                     {sz.name}
                                 </Button>
+                            }
                             )
                         }
                     </div>
@@ -58,15 +42,15 @@ const OrderContainer = ({ max, productID }) => {
                         size !== '' &&
                         <>
                             <p>Qty:</p>
-                            <input type="number" min="1" max={max} onChange={setQty} value={order.qty === undefined ? 0 : order.qty} />
+                            <input type="number" min="1" max={max} onChange={pickQty} value={qty} />
                         </>
                     }
                 </div>
             </div>
             <div>
                 {
-                    order.qty > 0 &&
-                    <AddCart big={true} productID={productID} />
+                    qty > 0 &&
+                    <AddCart productID={productID} size={size} qty={qty} />
                 }
             </div>
         </div>
