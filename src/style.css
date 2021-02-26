@@ -80,3 +80,13 @@ div.notifCartUpdated::before{
   75%   {top: -15px;}
   100%  {top: -25px}
 }
+
+@media only screen and (max-width: 623px) {
+    div.row{
+      margin:0;
+    }
+
+    div.card{
+      width:15rem;
+    }
+}

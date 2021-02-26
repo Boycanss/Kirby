@@ -5,14 +5,14 @@ import PriceButton from './priceButton';
 
 const cards = ({ product, show }) => {
 
-    let hg = show === true ? { col: 500, cardWidth: 18 } : { col: 390, cardWidth: 17 }
+    // let hg = show === true ? { col: 500, cardWidth: 18 } : { col: 390, cardWidth: 17 }
 
     const desc = product.description.replace(/<\/?[^>]+(>|$)/g, '\n');
 
     return (
-        <Col xl={3} lg={4} md={6} sm={6} style={{ minWidth: '288px', height: `${hg.col}px`, marginBottom: '10px' }}>
+        <Col xl={3} lg={4} md={6} sm={6} style={{ minWidth: '288px', maxWidth:'362px', height: `500px`, marginBottom: '10px' }}>
             <NavLink to={`/details/${product.id}`} className="detail-link">
-                <Card style={{ width: `${hg.cardWidth}rem`, border: 'none' }}>
+                <Card style={{ width: `100%`, border: 'none' }}>
                     <div style={{ minHeight: '175px' }} >
                         <Card.Img className="productimg" style={{ transition: 'transform .2s' }} variant="top" src={product.media.source} />
                     </div>
@@ -22,10 +22,9 @@ const cards = ({ product, show }) => {
                             {show && desc}
                         </Card.Text>
                     </Card.Body>
-
+                    <PriceButton price={product.price.formatted_with_symbol} stock={product.quantity} />
                 </Card>
             </NavLink>
-            <PriceButton price={product.price.formatted_with_symbol} stock={product.quantity} />
         </Col>
     )
 }

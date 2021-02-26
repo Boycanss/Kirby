@@ -20,7 +20,7 @@ const Home = () => {
         getData();
     }, [id, sortBy]);
 
-    // console.log(product[3])
+    console.log(product[3])
 
     const getData = () => {
         if (!id || id === undefined) {

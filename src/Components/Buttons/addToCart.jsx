@@ -12,15 +12,23 @@ const AddToCart = ({ productID, size, qty }) => {
 
     const addToCart = (id) => {
         setLoadingNotif(true);
-        console.log({ id }, { size }, { qty })
-        commerce.cart.add({ "id": id, "quantity": qty, "variants": { "Size": size } })
-            .then((res) => {
-                console.log(res);
-                setLoadingNotif(false);
-                setNotif(true);
-                document.addEventListener('click', () => {
-                    setNotif(false)
-                });
+        console.log({ id }, { size }, { qty });
+
+        commerce.products.retrieve(id)
+            .then((prod) => {
+                console.log(prod)
+                const { variants } = prod;
+                const sz = variants[1].options;
+                const szID = sz[size].id;
+                commerce.cart.add(szID, qty)
+                    .then((res) => {
+                        // console.log(res);
+                        setLoadingNotif(false);
+                        setNotif(true);
+                        document.addEventListener('click', () => {
+                            setNotif(false)
+                        });
+                    })
             })
     }
 
@@ -31,7 +39,7 @@ const AddToCart = ({ productID, size, qty }) => {
             {notify}
             <Button className="updateCart" onClick={() => addToCart(productID)} variant="light" style={{ border: '1px lightblue solid', width: '90%', height: '75px', display: 'block', margin: 'auto' }}>
                 {loadingNotif === true ?
-                    <Spinner animation="border"/> :
+                    <Spinner animation="border" /> :
                     <strong>Add to Cart</strong>
                 }
             </Button>

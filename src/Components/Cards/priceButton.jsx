@@ -5,7 +5,7 @@ const PriceButton = ({ price, stock }) => {
     return (
         <div>
             <div style={{
-                position: 'absolute', bottom: '15px', width: '80%',
+                position: 'relative', bottom: '15px', width: '100%',
                 display: 'flex',
                 justifyContent: 'space-between'
             }}>

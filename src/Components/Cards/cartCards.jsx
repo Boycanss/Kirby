@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Button, Row, Col } from 'react-bootstrap'
-import Commerce from '@chec/commerce.js';
-const commerce = new Commerce('pk_test_228485810589e825901899773fc3fb3e4eb4ed6a60fcd');
+// import Commerce from '@chec/commerce.js';
+// const commerce = new Commerce('pk_test_228485810589e825901899773fc3fb3e4eb4ed6a60fcd');
 
 const CartCards = ({ product, increaseQty, reduceQty }) => {
 

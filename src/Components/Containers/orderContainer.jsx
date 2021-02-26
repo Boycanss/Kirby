@@ -28,7 +28,7 @@ const OrderContainer = ({ max, productID }) => {
                     <div style={{ display: 'flex', flexDirection: 'row' }}>
                         {
                             sizes.map((sz) => {
-                                return <Button className={size === sz.name ? ' active' : ''} onClick={() => pickSize(sz.name)} key={sz.id} id={sz.name} variant="light" style={{ margin: '0 10px', borderRadius: '50%' }}>
+                                return <Button className={size === sz.id ? ' active' : ''} onClick={() => pickSize(sz.id)} key={sz.id} id={sz.name} variant="light" style={{ margin: '0 10px', borderRadius: '50%' }}>
                                     {sz.name}
                                 </Button>
                             }
